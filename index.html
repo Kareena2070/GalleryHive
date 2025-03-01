@@ -13,9 +13,11 @@
 
     <header class="bg-gray-300 p-4 text-center">
         <h1 class="text-2xl font-bold">GalleryHive</h1>
-        <button class="bg-lime-500 text-white px-4 py-2 rounded-full float-right">LOGIN</button>
-        <button class="bg-lime-500 text-white px-4 py-2 rounded-full float-right">SIGN</button>
-        <p class="mt-2">The best free stock photos, royalty-free images & videos shared by creators.</p>
+        <h1 id="welcome-message" class="text-xl text-gray-700 mt-2"></h1> <!-- Welcome Message Added -->
+        <button class="bg-lime-500 text-white px-4 py-2 rounded-full float-right">
+            <a href="login.html">LOGIN / SIGNUP</a>
+        </button>
+        <p class="mt-2">TCapture. Collect. Cherish. Create timeless memories with GalleryHive!</p>
         <div class="mt-4 flex justify-center">
             <input class="px-4 py-2 rounded-l-full w-1/2" placeholder="Search for your favorite memories" type="text"/>
             <button class="bg-white px-4 py-2 rounded-r-full">
@@ -23,6 +25,7 @@
             </button>
         </div>
     </header>
+    
 
     <nav class="bg-white p-4 flex justify-center items-center space-x-4 relative">
         <a class=" px-4 py-2 rounded-full" href="#">Home</a>
@@ -67,9 +70,9 @@
     <input type="file" id="imageUpload" accept="image/*" multiple style="display: none;" />
 
 
-    <footer class="bg-gray-300 p-4 text-center">
+    <!-- <footer class="bg-gray-300 p-4 text-center">
         <p>© 2005 Pexel Clone</p>
-    </footer>
+    </footer> -->
     <script src="script.js"></script>
 
 </body>

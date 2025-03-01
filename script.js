@@ -1,4 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
+    // Display the welcome message if the user is logged in
+    const userName = localStorage.getItem('loggedInUser');
+    if (userName) {
+        document.getElementById('welcome-message').textContent = `Welcome ${userName}, let's make memories!`;
+    }
+
     const fileInput = document.getElementById("imageUpload");
     const gallery = document.getElementById("gallery");
     const dropdownMenu = document.getElementById("dropdown-menu");
