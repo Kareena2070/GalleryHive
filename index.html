@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pexel Clone</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="styles.css">
+  
+</head>
+<body class="bg-gray-100">
+
+    <header class="bg-gray-300 p-4 text-center">
+        <h1 class="text-2xl font-bold">GalleryHive</h1>
+        <button class="bg-lime-500 text-white px-4 py-2 rounded-full float-right">LOGIN</button>
+        <button class="bg-lime-500 text-white px-4 py-2 rounded-full float-right">SIGN</button>
+        <p class="mt-2">The best free stock photos, royalty-free images & videos shared by creators.</p>
+        <div class="mt-4 flex justify-center">
+            <input class="px-4 py-2 rounded-l-full w-1/2" placeholder="Search for your favorite memories" type="text"/>
+            <button class="bg-white px-4 py-2 rounded-r-full">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </header>
+
+    <nav class="bg-white p-4 flex justify-center items-center space-x-4 relative">
+        <a class=" px-4 py-2 rounded-full" href="#">Home</a>
+    
+        <div class="relative">
+            <button id="category-btn" class="px-4 py-2 rounded-full cursor-pointer flex items-center">
+                Categories
+            </button>
+            <div id="dropdown-menu" class="absolute hidden bg-white shadow-md rounded-md w-40 mt-2 z-50">
+                <a class="block px-4 py-2 hover:bg-gray-200" href="category1.html">Category 1</a>
+                <a class="block px-4 py-2 hover:bg-gray-200" href="category2.html">Category 2</a>
+                <a class="block px-4 py-2 hover:bg-gray-200" href="category3.html">Category 3</a>
+            </div>
+        </div>
+    
+        <a class="px-4 py-2 rounded-full upload-btn" href="#">Upload</a>
+        <div id="category-container"></div> <!-- New categories will be added here -->
+
+    </nav>
+    
+    
+    
+    
+
+    <main class="p-4" id="gallery">
+        <!-- Example Images (will be removed after first upload) -->
+        <div class="image-container example-image">
+            <img src="Random1.png" alt="Random image">
+        </div>
+        <div class="image-container example-image">
+            <img src="Random2.png" alt="Random image">
+        </div>
+        <div class="image-container example-image">
+            <img src="Random3.png" alt="Random image">
+        </div>
+        <div class="image-container example-image">
+            <img src="Random4.png" alt="Random image">
+        </div>
+    </main>
+
+    <input type="file" id="imageUpload" accept="image/*" style="display: none;" />
+    <input type="file" id="imageUpload" accept="image/*" multiple style="display: none;" />
+
+
+    <footer class="bg-gray-300 p-4 text-center">
+        <p>© 2005 Pexel Clone</p>
+    </footer>
+    <script src="script.js"></script>
+
+</body>
+</html>
+

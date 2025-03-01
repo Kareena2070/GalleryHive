@@ -1,0 +1,116 @@
+nav a, nav button {
+    background-color: white; /* Default background */
+    transition: background-color 0.3s ease;
+}
+
+/* Hover effect */
+nav a:hover, nav button:hover {
+    background-color: #d1d5db; /* Light gray on hover */
+}
+
+/* Active state when clicked */
+nav a.active, nav button.active {
+    background-color: #d1d5db; /* Keep it gray when selected */
+}
+
+
+
+
+
+
+
+#dropdown-menu {
+    display: none;
+    position: absolute;
+    background: white;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    width: 160px;
+}
+
+#dropdown-menu a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+#dropdown-menu a:hover {
+    background: #f3f4f6;
+}
+
+.show {
+    display: block !important;
+}
+
+
+
+
+
+/* Masonry Grid Layout */
+#gallery {
+    column-count: 3; /* Creates Pinterest-like columns */
+    column-gap: 15px;
+}
+
+.image-container {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background: white;
+    position: relative;
+}
+
+.image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 6px;
+}
+
+
+.example-image {
+width: 100vw; /* Full width of the viewport */
+height: 90vh; /* Almost full height of the viewport */
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.example-image img {
+width: 100%;
+height: 100%;
+object-fit: cover; /* Ensures the image fills the container */
+}
+
+
+
+
+
+.remove-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: red;
+    color: white;
+    padding: 5px 10px;
+    font-size: 12px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    #gallery {
+        column-count: 2;
+    }
+}
+
+@media (max-width: 480px) {
+    #gallery {
+        column-count: 1;
+    }
+}
