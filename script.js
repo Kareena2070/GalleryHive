@@ -7,8 +7,8 @@ document.addEventListener("DOMContentLoaded", function () {
     let firstUpload = true;
     let imageCount = 0;
     let categoryButton = null;
-    let uploadedImages = []; // Store uploaded images
-    let currentCategory = null; // Store category name
+    let uploadedImages = []; // Stores images before categorization
+    let categories = {}; // Stores categories with their images
 
     document.querySelector(".upload-btn").addEventListener("click", function () {
         fileInput.click();
@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     function checkImageCount() {
-        if (imageCount >=  5 ) {
+        if (imageCount >= 5) {
             if (!categoryButton) {
                 categoryButton = document.createElement("button");
                 categoryButton.textContent = "Create Category";
@@ -85,35 +85,42 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function createCategory() {
         let categoryName = prompt("Enter a name for this category:");
-        if (!categoryName) return; 
+        if (!categoryName || categories.hasOwnProperty(categoryName)) return; // Prevent duplicates
 
-        currentCategory = categoryName;
-        dropdownMenu.innerHTML = ""; 
+        categories[categoryName] = [...uploadedImages]; // Store images for the category
+        uploadedImages = []; // Reset for new uploads
+        imageCount = 0;
+        gallery.innerHTML = ""; // Clear gallery for the next uploads
 
-        const newCategory = document.createElement("a");
-        newCategory.classList.add("block", "px-4", "py-2", "hover:bg-gray-200");
-        newCategory.href = "#";
-        newCategory.textContent = categoryName;
-        newCategory.addEventListener("click", function () {
-            displayCategoryImages();
-        });
-
-        dropdownMenu.appendChild(newCategory);
-
-        moveImagesToCategory();
+        updateCategoryDropdown(); // Update dropdown
         categoryButton.remove();
         categoryButton = null;
-        imageCount = 0;
     }
 
-    function moveImagesToCategory() {
-        gallery.innerHTML = ""; // Remove all images from home
+    function updateCategoryDropdown() {
+        dropdownMenu.innerHTML = ""; // Clear dropdown before repopulating
+
+        Object.keys(categories).forEach(categoryName => {
+            const existingCategory = document.querySelector(`[data-category="${categoryName}"]`);
+            if (!existingCategory) {
+                const categoryItem = document.createElement("a");
+                categoryItem.classList.add("block", "px-4", "py-2", "hover:bg-gray-200");
+                categoryItem.href = "#";
+                categoryItem.textContent = categoryName;
+                categoryItem.setAttribute("data-category", categoryName); // Unique identifier
+
+                categoryItem.addEventListener("click", function () {
+                    displayCategoryImages(categoryName);
+                });
+
+                dropdownMenu.appendChild(categoryItem);
+            }
+        });
     }
 
-    function displayCategoryImages() {
+    function displayCategoryImages(categoryName) {
         gallery.innerHTML = ""; // Clear gallery
-
-        uploadedImages.forEach(imageUrl => {
+        categories[categoryName].forEach(imageUrl => {
             const imageCard = document.createElement("div");
             imageCard.classList.add("image-container");
 
@@ -124,12 +131,9 @@ document.addEventListener("DOMContentLoaded", function () {
             gallery.appendChild(imageCard);
         });
     }
-});
 
-// Toggle dropdown functionality
-document.addEventListener("DOMContentLoaded", function () {
+    // Toggle dropdown functionality
     const categoryBtn = document.getElementById("category-btn");
-    const dropdownMenu = document.getElementById("dropdown-menu");
 
     categoryBtn.addEventListener("click", function (event) {
         event.stopPropagation();
