@@ -2,7 +2,14 @@ document.addEventListener("DOMContentLoaded", function () {
     // Display the welcome message if the user is logged in
     const userName = localStorage.getItem('loggedInUser');
     if (userName) {
-        document.getElementById('welcome-message').textContent = `Welcome ${userName}, let's make memories!`;
+        const welcomeMessage = document.getElementById('welcome-message');
+        welcomeMessage.textContent = `Welcome ${userName}, let's make memories!`;
+        welcomeMessage.style.display = "block"; // Show the welcome message
+
+        // Hide the welcome message after 3 seconds
+        setTimeout(() => {
+            welcomeMessage.style.display = "none";
+        }, 3000);
     }
 
     const fileInput = document.getElementById("imageUpload");
@@ -16,10 +23,12 @@ document.addEventListener("DOMContentLoaded", function () {
     let uploadedImages = []; // Stores images before categorization
     let categories = {}; // Stores categories with their images
 
+    // Trigger file input when upload button is clicked
     document.querySelector(".upload-btn").addEventListener("click", function () {
         fileInput.click();
     });
 
+    // Remove image when 'X' button is clicked
     document.addEventListener("click", function (event) {
         if (event.target.classList.contains("remove-btn")) {
             const index = uploadedImages.findIndex(img => img === event.target.previousSibling.src);
@@ -30,6 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+    // Handle image upload
     fileInput.addEventListener("change", function (event) {
         const files = event.target.files;
 
@@ -72,6 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+    // Check if the number of uploaded images is enough to create a category
     function checkImageCount() {
         if (imageCount >= 5) {
             if (!categoryButton) {
@@ -89,6 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    // Create a new category from uploaded images
     function createCategory() {
         let categoryName = prompt("Enter a name for this category:");
         if (!categoryName || categories.hasOwnProperty(categoryName)) return; // Prevent duplicates
@@ -103,6 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
         categoryButton = null;
     }
 
+    // Update the dropdown menu with created categories
     function updateCategoryDropdown() {
         dropdownMenu.innerHTML = ""; // Clear dropdown before repopulating
 
@@ -124,6 +137,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    // Display images from a selected category
     function displayCategoryImages(categoryName) {
         gallery.innerHTML = ""; // Clear gallery
         categories[categoryName].forEach(imageUrl => {
@@ -138,7 +152,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Toggle dropdown functionality
+    // Toggle dropdown menu visibility
     const categoryBtn = document.getElementById("category-btn");
 
     categoryBtn.addEventListener("click", function (event) {
@@ -150,6 +164,7 @@ document.addEventListener("DOMContentLoaded", function () {
         event.stopPropagation();
     });
 
+    // Close dropdown menu when clicking outside
     document.addEventListener("click", function () {
         dropdownMenu.classList.remove("show");
     });
